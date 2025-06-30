@@ -16,9 +16,11 @@ Aplikasi frontend berbasis React.js untuk pengisian data Pelindo
 ### 1. Clone Repository
 
 ```bash
-git clone https://github.com/username-kamu/form-pelindo.git
-cd form-pelindo
+git clone https://github.com/kangkoding/frontend-awalif-ghotamicha-irfan-saputra.git
+cd frontend-awalif-ghotamicha-irfan-saputra
 
 npm install
 npm start
 ```
+
+![Preview](./preview.jpeg)
