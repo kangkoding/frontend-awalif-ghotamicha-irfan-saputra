@@ -13,6 +13,7 @@ const FormPelindo = () => {
   const [barang, setBarang] = useState(null);
   const [hargaEditable, setHargaEditable] = useState("");
   const [diskonEditable, setDiskonEditable] = useState("");
+  const [pingMs, setPingMs] = useState(null);
 
   useEffect(() => {
     if (barang) {
@@ -20,6 +21,23 @@ const FormPelindo = () => {
       setDiskonEditable(barang.diskon?.toString() || "");
     }
   }, [barang]);
+
+  useEffect(() => {
+    const getPing = async () => {
+      const start = Date.now();
+      try {
+        await fetch("http://202.157.176.100:3001/ping");
+        const end = Date.now();
+        setPingMs(end - start);
+      } catch (err) {
+        setPingMs(null);
+        console.error("Ping gagal", err);
+      }
+    };
+    getPing();
+    const interval = setInterval(getPing, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const hargaNumber = parseFloat(hargaEditable) || 0;
   const diskonNumber = parseFloat(diskonEditable) || 0;
@@ -44,6 +62,23 @@ const FormPelindo = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-white shadow-lg rounded-2xl p-6 sm:p-8 border border-slate-200 space-y-6"
         >
+          {pingMs !== null && (
+            <div className="text-sm font-medium mb-1 text-gray-700">
+              Status Server:{" "}
+              <span
+                className={`inline-block px-2 py-0.5 rounded font-semibold ${
+                  pingMs < 200
+                    ? "bg-green-100 text-green-700"
+                    : pingMs < 500
+                    ? "bg-yellow-100 text-yellow-700"
+                    : "bg-red-100 text-red-700"
+                }`}
+              >
+                {pingMs} ms
+              </span>
+            </div>
+          )}
+
           <SelectNegara
             onSelect={(v) => {
               setNegara(v);
