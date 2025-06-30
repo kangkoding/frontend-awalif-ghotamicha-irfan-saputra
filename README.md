@@ -2,7 +2,7 @@
 
 Frontend berbasis React.js untuk pengisian data Pelindo
 
-## 📦 Tech Stack
+## Tech Stack
 
 - React.js
 - TailwindCSS v3
