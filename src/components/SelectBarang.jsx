@@ -3,7 +3,6 @@ import Select from "react-select";
 import axios from "axios";
 
 const SelectBarang = ({ pelabuhanId, onSelect }) => {
-  console.log("Requesting barang with pelabuhanId:", pelabuhanId);
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
@@ -20,7 +19,6 @@ const SelectBarang = ({ pelabuhanId, onSelect }) => {
     axios
       .get(`http://202.157.176.100:3001/barangs?filter=${encodedFilter}`)
       .then((res) => {
-        console.log("📦 Data barang:", res.data); // 🔎 DEBUG
         const opts = res.data.map((item) => ({
           label: item.nama_barang,
           value: item.id,
@@ -29,7 +27,7 @@ const SelectBarang = ({ pelabuhanId, onSelect }) => {
         setOptions(opts);
       })
       .catch((err) => {
-        console.error("❌ Gagal ambil barang:", err);
+        console.error("Error fetch barang:", err);
       });
   }, [pelabuhanId]);
 
@@ -39,7 +37,6 @@ const SelectBarang = ({ pelabuhanId, onSelect }) => {
       <Select
         options={options}
         onChange={(selected) => {
-          console.log("Barang dipilih:", selected?.data);
           onSelect(selected?.data);
         }}
         placeholder="Pilih barang"

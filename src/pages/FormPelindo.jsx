@@ -93,7 +93,7 @@ const FormPelindo = () => {
 
               <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
                 <h3 className="font-semibold text-lg text-gray-700 mb-2">
-                  Simulasi Harga & Diskon
+                  Harga & Diskon
                 </h3>
 
                 <div className="mb-3">

@@ -21,7 +21,6 @@ const SelectNegara = ({ onSelect }) => {
       <Select
         options={options}
         onChange={(selected) => {
-          console.log("🔥 Negara terpilih dari dropdown:", selected);
           onSelect && onSelect(selected);
         }}
         placeholder="Pilih negara"

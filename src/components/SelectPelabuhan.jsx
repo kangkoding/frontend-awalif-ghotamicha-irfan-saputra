@@ -15,12 +15,9 @@ const SelectPelabuhan = ({ negaraId, onSelect }) => {
     };
 
     const encodedFilter = encodeURIComponent(JSON.stringify(filter));
-    console.log("Requesting pelabuhan with negaraId:", negaraId);
-
     axios
       .get(`http://202.157.176.100:3001/pelabuhans?filter=${encodedFilter}`)
       .then((res) => {
-        console.log("Pelabuhan:", res.data);
         const opts = res.data.map((item) => ({
           label: item.nama_pelabuhan,
           value: item.id_pelabuhan,
@@ -38,7 +35,6 @@ const SelectPelabuhan = ({ negaraId, onSelect }) => {
       <Select
         options={options}
         onChange={(selected) => {
-          console.log("🔥 Pelabuhan terpilih dari dropdown:", selected);
           onSelect && onSelect(selected);
         }}
         placeholder="Pilih pelabuhan"
