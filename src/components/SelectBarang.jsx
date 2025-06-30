@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import axios from "axios";
+import Loader from "./Loader";
 
 const SelectBarang = ({ pelabuhanId, onSelect }) => {
   const [options, setOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!pelabuhanId) return;
@@ -26,21 +28,23 @@ const SelectBarang = ({ pelabuhanId, onSelect }) => {
         }));
         setOptions(opts);
       })
-      .catch((err) => {
-        console.error("Error fetch barang:", err);
-      });
+      .finally(() => setLoading(false));
   }, [pelabuhanId]);
 
   return (
     <div className="mb-4">
       <label className="block font-semibold mb-1">Barang</label>
-      <Select
-        options={options}
-        onChange={(selected) => {
-          onSelect(selected?.data);
-        }}
-        placeholder="Pilih barang"
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <Select
+          options={options}
+          onChange={(selected) => {
+            onSelect(selected?.data);
+          }}
+          placeholder="Pilih barang"
+        />
+      )}
     </div>
   );
 };
