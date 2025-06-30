@@ -1,6 +1,6 @@
-# Form Pelindo 🇮🇩
+# Frontend Pelindo - Awalif Ghotamicha Irfan Saputra
 
-Aplikasi frontend berbasis React.js untuk pengisian data Pelindo
+Frontend berbasis React.js untuk pengisian data Pelindo
 
 ## 📦 Tech Stack
 
